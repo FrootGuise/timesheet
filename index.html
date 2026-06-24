@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Timesheet</title>
+        <meta name="description" content="Timesheet Creator">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=
+Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=
+Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="bodyshell">
+<div id="savedoptions">
+            <div class="optionbox" id="starttime">
+                <label class="label1">Start:</label>
+                <input type="time" class="timeentrybox" id="starttimeentry" value="08:00"/>
+            </div>
+            <div class="optionbox" id="starttravelbase">
+                <label class="label1">Start Base:</label>
+                <input type="time" class="timeentrybox" id="startbasetimeentry" value="00:10"/>
+            </div>
+
+            <div class="optionbox" id="endtime">
+                <label class="label1">End:</label>
+                <input type="time" class="timeentrybox" id="endtimeentry" value="15:30"/>
+            </div>
+            <div class="optionbox" id="endtravelbase">
+                <label class="label1">End Base:</label>
+                <input type="time" class="timeentrybox" id="endbasetimeentry" value="00:20"/>
+            </div>
+            
+</div>
+<div class="confirmsaved">
+                <button class="btn1" id="confirmsavebtn">Save</button>
+            </div>
+
+<div id="displaygrid">
+    <div class="displayrow">
+    <label class="label2">Arrival Time 1:</label>
+    <label class="label2" id="arrivalresult1">08:12</label>
+</div>
+<div class="displayrow">
+    <label class="label2">Arrival Time 2:</label>
+    <label class="label2" id="arrivalresult2">15:52</label>
+</div>
+
+</div>
+
+<div class="confirmsaved">
+                <button class="btn1" id="generatebtn">Generate</button>
+            </div>
+
+
+        </div>
+        
+        <script src="./script.js" async defer></script>
+    </body>
+</html>
