@@ -6,6 +6,11 @@ const endtimesaved = document.getElementById("endtimeentry");
 const endtimebase = document.getElementById("endbasetimeentry");
 const arr1 = document.getElementById("arrivalresult1");
 const arr2 = document.getElementById("arrivalresult2");
+const savedoptions = document.getElementById("savedoptions");
+const labels = document.querySelectorAll('.label1, .label2');
+const opts = document.querySelectorAll('.optionbox1, .optionbox2');
+const saveBtnShell = document.getElementById("saveBtnShell");
+const genBtnShell = document.getElementById("getBtnShell");
 
 saveBtn.disabled = true;
 genbtn.disabled = false;
@@ -14,6 +19,52 @@ let starttime = starttimesaved.value;
 let startbase = starttimebase.value;
 let endtime = endtimesaved.value;
 let endbase = endtimebase.value;
+
+function handleOrientationChange(e) {
+  if (e.matches) {
+    // It matches (orientation: landscape) -> Desktop
+    loadDesktopSettings();
+  } else {
+    // It doesn't match -> Portrait (Mobile)
+    loadMobileSettings();
+  }
+}
+
+// 1. Create a media query listener for landscape mode
+const orientationQuery = window.matchMedia("(orientation: landscape)");
+
+// 2. Run it immediately on page load
+handleOrientationChange(orientationQuery);
+
+// 3. Listen for changes (rotations or window resizing)
+orientationQuery.addEventListener('change', handleOrientationChange);
+
+
+function loadDesktopSettings(){
+    savedoptions.className = "savedoptionsc1";
+    labels.forEach(label => {
+  label.className = 'label1';
+});
+opts.forEach(box => {
+  box.className = 'optionbox1';
+});
+saveBtnShell.className = "confirmsaved1";
+genBtnShell.className = "confirmsaved1";
+}
+
+function loadMobileSettings(){
+    savedoptions.className = "savedoptionsc2";
+    labels.forEach(label => {
+  label.className = 'label2';
+});
+opts.forEach(box => {
+  box.className = 'optionbox2';
+});
+saveBtnShell.className = "confirmsaved2";
+genBtnShell.className = "confirmsaved2";
+}
+
+
 
 
 
@@ -94,11 +145,11 @@ function StartCalc(){
     const [h2, m2] = startbase.split(':').map(Number);
     const initialStart = (h1 * 60 + m1);
     const initialBase = (h2 * 60 + m2);
-    const initialTotal = initialStart + initialBase;
+    const initialTotal = initialStart - initialBase;
 
     let randomMinutes = GetRandomNumber(1, 6);
 
-    let finalMinutes = initialTotal + randomMinutes;
+    let finalMinutes = initialTotal - randomMinutes;
 
     const hours = Math.floor(finalMinutes / 60) % 24;
     const minutes = finalMinutes % 60;
