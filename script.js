@@ -1,3 +1,4 @@
+// 1. Keep individual explicit elements at the top
 const saveBtn = document.getElementById("confirmsavebtn");
 const genbtn = document.getElementById("generatebtn");
 const starttimesaved = document.getElementById("starttimeentry");
@@ -7,62 +8,48 @@ const endtimebase = document.getElementById("endbasetimeentry");
 const arr1 = document.getElementById("arrivalresult1");
 const arr2 = document.getElementById("arrivalresult2");
 const savedoptions = document.getElementById("savedoptions");
-const labels = document.querySelectorAll('.label1, .label2');
-const opts = document.querySelectorAll('.optionbox1, .optionbox2');
 const saveBtnShell = document.getElementById("saveBtnShell");
-const genBtnShell = document.getElementById("getBtnShell");
+const genBtnShell = document.getElementById("genBtnShell"); // Double check spelling against your HTML id!
 
 saveBtn.disabled = true;
 genbtn.disabled = false;
 
-let starttime = starttimesaved.value;
-let startbase = starttimebase.value;
-let endtime = endtimesaved.value;
-let endbase = endtimebase.value;
+let starttime = starttimesaved ? starttimesaved.value : "";
+let startbase = starttimebase ? starttimebase.value : "";
+let endtime = endtimesaved ? endtimesaved.value : "";
+let endbase = endtimebase ? endtimebase.value : "";
 
-function handleOrientationChange(e) {
-  if (e.matches) {
-    // It matches (orientation: landscape) -> Desktop
-    loadDesktopSettings();
-  } else {
-    // It doesn't match -> Portrait (Mobile)
-    loadMobileSettings();
-  }
-}
-
-// 1. Create a media query listener for landscape mode
-const orientationQuery = window.matchMedia("(orientation: landscape)");
-
-// 2. Run it immediately on page load
-handleOrientationChange(orientationQuery);
-
-// 3. Listen for changes (rotations or window resizing)
-orientationQuery.addEventListener('change', handleOrientationChange);
-
+// ... Keep your media query logic here ...
 
 function loadDesktopSettings(){
-    savedoptions.className = "savedoptionsc1";
-    labels.forEach(label => {
-  label.className = 'label1';
-});
-opts.forEach(box => {
-  box.className = 'optionbox1';
-});
-saveBtnShell.className = "confirmsaved1";
-genBtnShell.className = "confirmsaved1";
+    if(savedoptions) savedoptions.className = "savedoptionsc1";
+    if(saveBtnShell) saveBtnShell.className = "confirmsaved1";
+    if(genBtnShell) genBtnShell.className = "confirmsaved1";
+
+    // FETCH FRESH TARGETS INSIDE THE LOOP
+    document.querySelectorAll('.label1, .label2').forEach(label => {
+        label.className = 'label1';
+    });
+    document.querySelectorAll('.optionbox1, .optionbox2').forEach(box => {
+        box.className = 'optionbox1';
+    });
 }
 
 function loadMobileSettings(){
-    savedoptions.className = "savedoptionsc2";
-    labels.forEach(label => {
-  label.className = 'label2';
-});
-opts.forEach(box => {
-  box.className = 'optionbox2';
-});
-saveBtnShell.className = "confirmsaved2";
-genBtnShell.className = "confirmsaved2";
+    if(savedoptions) savedoptions.className = "savedoptionsc2";
+    if(saveBtnShell) saveBtnShell.className = "confirmsaved2";
+    if(genBtnShell) genBtnShell.className = "confirmsaved2";
+
+    // FETCH FRESH TARGETS INSIDE THE LOOP
+    document.querySelectorAll('.label1, .label2').forEach(label => {
+        label.className = 'label2';
+    });
+    document.querySelectorAll('.optionbox1, .optionbox2').forEach(box => {
+        box.className = 'optionbox2';
+    });
 }
+
+// ... Keep the rest of your event listeners below ...
 
 
 
