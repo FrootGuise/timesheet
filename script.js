@@ -9,7 +9,7 @@ const arr1 = document.getElementById("arrivalresult1");
 const arr2 = document.getElementById("arrivalresult2");
 const savedoptions = document.getElementById("savedoptions");
 const saveBtnShell = document.getElementById("saveBtnShell");
-const genBtnShell = document.getElementById("genBtnShell"); // Double check spelling against your HTML id!
+const genBtnShell = document.getElementById("genBtnShell"); 
 
 saveBtn.disabled = true;
 genbtn.disabled = false;
@@ -19,7 +19,23 @@ let startbase = starttimebase ? starttimebase.value : "";
 let endtime = endtimesaved ? endtimesaved.value : "";
 let endbase = endtimebase ? endtimebase.value : "";
 
-// ... Keep your media query logic here ...
+// Remove the matchMedia code and replace it with a simple resize listener:
+
+function runOrientationCheck() {
+  if (window.innerWidth > window.innerHeight) {
+    // Width is bigger -> Desktop
+    loadDesktopSettings();
+  } else {
+    // Height is bigger -> Mobile
+    loadMobileSettings();
+  }
+}
+
+// 1. Run it immediately on page load to set the initial layout
+window.addEventListener('DOMContentLoaded', runOrientationCheck);
+
+// 2. Run it every single time the window is resized or rotated
+window.addEventListener('resize', runOrientationCheck);
 
 function loadDesktopSettings(){
     if(savedoptions) savedoptions.className = "savedoptionsc1";
